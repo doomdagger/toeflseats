@@ -22,6 +22,9 @@ router.get('/', function(req, res) {
     shasum.update(tmpStr);
     tmpStr = shasum.digest();
 
+    console.log(tmpStr);
+    console.log(echostr);
+
     if ( signature !== "" && tmpStr == signature ){
         res.send(echostr);
     }else{
