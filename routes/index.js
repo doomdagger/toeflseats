@@ -2,14 +2,7 @@ var express = require('express');
 var crypto = require('crypto');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
-
-    var signature = req.param("signature") || "",
-        timestamp = req.param("timestamp") || "",
-        nonce = req.param("nonce") || "",
-        echostr = req.param("echostr") || "";
-
+var checkHash = function (signature, timestamp, nonce) {
     var token = "ILoveYou",
         tmpArr = [token, timestamp, nonce],
         tmpStr;
@@ -20,17 +13,40 @@ router.get('/', function(req, res) {
     var shasum = crypto.createHash('sha1');
 
     shasum.update(tmpStr);
-    tmpStr = shasum.digest().toString();
+    tmpStr = shasum.digest('hex');
 
-    console.log(tmpStr);
-    console.log(echostr);
+    return signature !== "" && tmpStr == signature;
+};
 
-    if ( signature !== "" && tmpStr == signature ){
+/* GET home page. */
+router.get('/', function(req, res) {
+
+    var signature = req.param("signature") || "",
+        timestamp = req.param("timestamp") || "",
+        nonce = req.param("nonce") || "",
+        echostr = req.param("echostr") || "";
+
+
+    if ( checkHash(signature, timestamp, nonce) ){
         res.send(echostr);
     }else{
         res.send("Invalid Request");
     }
 
+});
+
+router.post('/', function(req, res) {
+    var signature = req.param("signature") || "",
+        timestamp = req.param("timestamp") || "",
+        nonce = req.param("nonce") || "";
+
+    console.log(req.body);
+
+    if ( checkHash(signature, timestamp, nonce) ){
+        res.send("true");
+    }else{
+        res.send("Invalid Request");
+    }
 });
 
 module.exports = router;
