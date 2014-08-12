@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
     var shasum = crypto.createHash('sha1');
 
     shasum.update(tmpStr);
-    tmpStr = shasum.digest();
+    tmpStr = shasum.digest().toString();
 
     console.log(tmpStr);
     console.log(echostr);
