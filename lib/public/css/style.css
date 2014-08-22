@@ -1,0 +1,39 @@
+.error {
+    color: red;
+    font-size: 1em;
+}
+
+li.question {
+    list-style-type: disc;
+    font-family: Arial, Helvetica, "Sans Serif";
+    font-size: 10pt;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    line-height: 100%;
+}
+
+li.answer, ul.answer{
+    list-style-type: circle;
+    font-weight: normal;
+    padding-top: 6px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    line-height: 120%;
+    list-style-position: outside;
+}
+
+li.subAnswer {
+    list-style-type: square;
+    list-style-position: outside;
+}
+
+h2.faq {
+    font-size: 16pt;
+    text-align: left;
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
