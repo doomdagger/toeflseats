@@ -2,5 +2,6 @@
 /.idea
 npm-debug.log
 
-*.jpg
-*.html
+/lib/public/code/*.jpg
+/lib/public/code/*.html
+
